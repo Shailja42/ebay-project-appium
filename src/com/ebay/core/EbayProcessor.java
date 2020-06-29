@@ -1,4 +1,4 @@
-package com.ebay.Project;
+package com.ebay.core;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -16,6 +16,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeTest;
 
+import com.ebay.utils.Contants;
+
+import bsh.org.objectweb.asm.Constants;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -36,7 +39,7 @@ public class EbayFunctions {
 		capabilities.setCapability("deviceName", "Samsung Galaxy S4 Device");
 		capabilities.setCapability("platformName", "Android");
 		capabilities.setCapability("app",
-				new File("C:/Users/akumar94/Downloads/shailja/eBay - Buy, Sell & Save Money-5.8.0.15.apk"));
+				new File(Contants.APK_PATH));
 		driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
 
 		// This package name app
@@ -55,8 +58,8 @@ public class EbayFunctions {
 
 		// locate the Text on the calculator MobileBy using MobileBy.name()
 		driver.findElement(MobileBy.id("button_sign_in")).click();
-		driver.findElement(MobileBy.id("user_id")).sendKeys("shailjagautam13@gmail.com");
-		driver.findElement(MobileBy.id("pswd")).sendKeys("mageik@j#i7");
+		driver.findElement(MobileBy.id("user_id")).sendKeys(Contants.USERID);
+		driver.findElement(MobileBy.id("pswd")).sendKeys(Contants.PASSWORD);
 		driver.findElement(MobileBy.id("submit_btn")).click();
 		waitVar.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("search_box")));
 
